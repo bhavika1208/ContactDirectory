@@ -1,0 +1,79 @@
+DROP DATABASE IF EXISTS contactDirectory;
+
+CREATE DATABASE contactDirectory;
+
+USE contactDirectory;
+
+CREATE TABLE users(
+	userId INT PRIMARY KEY AUTO_INCREMENT,
+    userName VARCHAR(32) NOT NULL,
+    userPassword VARCHAR(32) NOT NULL,
+    userEmail VARCHAR(32) NOT NULL,
+    userAddress VARCHAR(200) NOT NULL,
+    userPhoneNo VARCHAR(16) NOT NULL,
+    isActive TINYINT DEFAULT 1,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    modifiedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE contact(
+    contactId INT PRIMARY KEY AUTO_INCREMENT,
+    userId INT NOT NULL,
+    contactName VARCHAR(32) NOT NULL,
+    isFavourite TINYINT DEFAULT 0,
+    isActive TINYINT DEFAULT 1,
+    profilePicture VARCHAR(128),
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    modifiedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		FOREIGN KEY (userId) REFERENCES users(userId)
+);
+
+CREATE TABLE email(
+	emailId INT PRIMARY KEY AUTO_INCREMENT,
+    contactId INT NOT NULL,
+    emailType VARCHAR(32) NOT NULL,
+    email VARCHAR(32) NOT NULL,
+    isActive TINYINT DEFAULT 1,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    modifiedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		FOREIGN KEY ( contactId ) REFERENCES contact(contactId)
+);
+
+CREATE TABLE phone(
+	phoneId INT PRIMARY KEY AUTO_INCREMENT,
+    contactId INT NOT NULL,
+    phoneType VARCHAR(32) NOT NULL,
+    phoneNo VARCHAR(32) NOT NULL,
+    isActive TINYINT DEFAULT 1,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    modifiedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		FOREIGN KEY ( contactId ) REFERENCES contact(contactId)
+);
+
+CREATE TABLE state(
+	stateId INT PRIMARY KEY AUTO_INCREMENT,
+    stateName VARCHAR(32) NOT NULL
+);
+
+CREATE TABLE city(
+	cityId INT PRIMARY KEY AUTO_INCREMENT,
+    cityName VARCHAR(32) NOT NULL,
+    inState INT NOT NULL,
+		FOREIGN KEY (inState) REFERENCES state(stateId)
+);
+
+CREATE TABLE address(
+	addressId INT PRIMARY KEY AUTO_INCREMENT,
+    contactId INT NOT NULL,
+    addressType VARCHAR(32) NOT NULL,
+    address VARCHAR(32) NOT NULL,
+    addressCity INT NOT NULL,
+    addressState INT NOT NULL,
+    addressPincode INT NOT NULL,
+    isActive TINYINT DEFAULT 1,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    modifiedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		FOREIGN KEY (contactId) REFERENCES contact(contactId),
+		FOREIGN KEY (addressCity) REFERENCES city(cityId),
+		FOREIGN KEY (addressState) REFERENCES state(stateId)
+);
