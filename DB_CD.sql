@@ -31,7 +31,7 @@ CREATE TABLE contact(
 CREATE TABLE email(
 	emailId INT PRIMARY KEY AUTO_INCREMENT,
     contactId INT NOT NULL,
-    emailType VARCHAR(32) NOT NULL,
+    emailType VARCHAR(32),
     email VARCHAR(32) NOT NULL,
     isActive TINYINT DEFAULT 1,
     createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -42,7 +42,7 @@ CREATE TABLE email(
 CREATE TABLE phone(
 	phoneId INT PRIMARY KEY AUTO_INCREMENT,
     contactId INT NOT NULL,
-    phoneType VARCHAR(32) NOT NULL,
+    phoneType VARCHAR(32),
     phoneNo VARCHAR(32) NOT NULL,
     isActive TINYINT DEFAULT 1,
     createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -55,6 +55,7 @@ CREATE TABLE state(
     stateName VARCHAR(32) NOT NULL
 );
 
+
 CREATE TABLE city(
 	cityId INT PRIMARY KEY AUTO_INCREMENT,
     cityName VARCHAR(32) NOT NULL,
@@ -65,7 +66,7 @@ CREATE TABLE city(
 CREATE TABLE address(
 	addressId INT PRIMARY KEY AUTO_INCREMENT,
     contactId INT NOT NULL,
-    addressType VARCHAR(32) NOT NULL,
+    addressType VARCHAR(32),
     address VARCHAR(32) NOT NULL,
     addressCity INT NOT NULL,
     addressState INT NOT NULL,
