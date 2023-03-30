@@ -1,9 +1,26 @@
 package com.bhavika.cd.contactDirectory.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+
+@Entity
+@Table(name="city")
 public class City {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="cityId")
 	private int cityId;
+	
+	@Column(name="cityName")
 	private String cityName;
+	
+	@Column(name="cityStateId")
 	private int cityStateId;
 
 	public City() {

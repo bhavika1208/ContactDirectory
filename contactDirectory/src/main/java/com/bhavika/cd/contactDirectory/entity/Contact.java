@@ -1,16 +1,41 @@
 package com.bhavika.cd.contactDirectory.entity;
 
 import java.security.Timestamp;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name="contact")
 public class Contact {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="contactId")
 	private int contactId;
+	
+	@Column(name="userId")
 	private int userId;
+	
+	@Column(name="contactName")
 	private String contactName;
+
+	@Column(name="isFavourite")
 	private boolean isFavourite;
+	
+	@Column(name="isActive")
 	private boolean isActive;
+
+	@Column(name="profilePicture")
 	private String profilePicture;
+	
+	@Column(name="createdAt")
 	private Timestamp createdAt;
+
+	@Column(name="modifiedAt")
 	private Timestamp modifiedAt;
 	
 	public Contact() {

@@ -1,16 +1,40 @@
 package com.bhavika.cd.contactDirectory.entity;
 
 import java.security.Timestamp;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name="email")
 public class Email {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="emailId")
 	private int emailId;
+	
+	@Column(name="contactId")	
 	private int contactId;
+	
+	@Column(name="emailType")
 	private String emailType;
+	
+	@Column(name="email")
 	private String email;
+
+	@Column(name="isActive")
 	private boolean isActive;
+
+	@Column(name="createdAt")
 	private Timestamp createdAt;
+
+	@Column(name="modifiedAt")
 	private Timestamp modifiedAt;
+
 	public Email() {
 	}
 	public Email(int contactId, String emailType, String email, boolean isActive, Timestamp createdAt,

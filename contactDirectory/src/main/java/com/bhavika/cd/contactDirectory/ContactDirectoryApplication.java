@@ -8,6 +8,7 @@ public class ContactDirectoryApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ContactDirectoryApplication.class, args);
+		System.out.println("db connected");
 	}
 
 }
