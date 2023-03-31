@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "12563059-019a-4acc-822b-6a3c1ffb2f59",
+		"name": "States",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAllStates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cd/states",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cd",
+						"states"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetStateById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cd/state/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cd",
+						"state",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

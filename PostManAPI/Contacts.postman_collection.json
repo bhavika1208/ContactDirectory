@@ -1,0 +1,30 @@
+{
+	"info": {
+		"_postman_id": "544459fa-7e90-459e-8b20-cc7784218992",
+		"name": "Contacts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAllContactsForAUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cd/contacts/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cd",
+						"contacts",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "c6fe5142-7811-4e81-954b-61eff5fed6a4",
+		"name": "City",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAllCities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cd/cities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cd",
+						"cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCityFromStateId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cd/city/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cd",
+						"city",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

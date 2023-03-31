@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "c8e31739-b247-43fe-99bc-c0d53a293582",
+		"name": "Phone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AddPhone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"contactId\": 1,\n    \"phoneType\": \"Home\",\n\t\"phoneNo\": \"123456789\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cd/phone",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cd",
+						"phone"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
