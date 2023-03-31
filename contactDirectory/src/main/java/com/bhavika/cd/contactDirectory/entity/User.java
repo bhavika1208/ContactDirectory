@@ -1,17 +1,37 @@
 package com.bhavika.cd.contactDirectory.entity;
 
-import java.security.Timestamp;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.beans.factory.annotation.Value;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="users")
 public class User {
 	
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+	private List<Contact> contact; 
+
+
+	public List<Contact> getContact() {
+		return contact;
+	}
+	public void setContact(List<Contact> contact) {
+		this.contact = contact;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "userId")
@@ -33,11 +53,14 @@ public class User {
 	private String userPhoneNo;
 
 	@Column(name = "isActive")
+	@Value("true")
 	private boolean isActive;
 	
+	@CreationTimestamp
 	@Column(name = "createdAt")
 	private Timestamp createdAt;
 
+	@CreationTimestamp
 	@Column(name = "modifiedAt")	
 	private Timestamp modifiedAt;
 	
@@ -45,17 +68,16 @@ public class User {
 	
 	public User() {
 	}
-	public User(String userName, String userPassword, String userEmail, String userAddress, String userPhoneNo,
-			boolean isActive, Timestamp createdAt, Timestamp modifiedAt) {
+	public User(String userName, String userPassword, String userEmail, String userAddress, String userPhoneNo) {
 		super();
 		this.userName = userName;
 		this.userPassword = userPassword;
 		this.userEmail = userEmail;
 		this.userAddress = userAddress;
 		this.userPhoneNo = userPhoneNo;
-		this.isActive = isActive;
-		this.createdAt = createdAt;
-		this.modifiedAt = modifiedAt;
+//		this.isActive = isActive;
+//		this.createdAt = createdAt;
+//		this.modifiedAt = modifiedAt;
 	}
 	public int getUserId() {
 		return userId;

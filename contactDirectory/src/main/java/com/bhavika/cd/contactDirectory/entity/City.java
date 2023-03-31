@@ -58,6 +58,11 @@ public class City {
 		this.cityStateId = cityStateId;
 	}
 
+	@Override
+	public String toString() {
+		return "City [cityId=" + cityId + ", cityName=" + cityName + ", cityStateId=" + cityStateId + "]";
+	}
 
+	
 
 }

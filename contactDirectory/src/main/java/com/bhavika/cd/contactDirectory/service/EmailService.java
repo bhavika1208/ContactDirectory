@@ -7,7 +7,9 @@ import com.bhavika.cd.contactDirectory.entity.Email;
 
 public interface EmailService {
 	
-	public List<Email> findAll(int theContactId);
+	public List<Email> findAllEmails();
+	
+	public List<Email> findEmailByContactId(int theContactId);
 	
 	public Email findById(int theEmailId);
 	

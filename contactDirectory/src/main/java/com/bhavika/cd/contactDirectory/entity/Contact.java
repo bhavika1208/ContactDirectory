@@ -1,11 +1,20 @@
 package com.bhavika.cd.contactDirectory.entity;
 
-import java.security.Timestamp;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,19 +41,34 @@ public class Contact {
 	@Column(name="profilePicture")
 	private String profilePicture;
 	
+	@CreationTimestamp
 	@Column(name="createdAt")
 	private Timestamp createdAt;
 
+	@CreationTimestamp
 	@Column(name="modifiedAt")
 	private Timestamp modifiedAt;
+	
+	
+	@OneToMany(mappedBy = "addressId", cascade = CascadeType.ALL)
+	private List<Address> theAddresses;
+	
+	@OneToMany(mappedBy = "phoneId", cascade = CascadeType.ALL)
+	private List<Phone> thePhones;
+	
+	@OneToMany(mappedBy = "emailId", cascade = CascadeType.ALL)
+	private List<Email> theEmails;
+	
 	
 	public Contact() {
 		
 	}
 	
-	public Contact(int userId, String contactName, boolean isFavourite, boolean isActive, String profilePicture,
-			Timestamp createdAt, Timestamp modifiedAt) {
+	public Contact(int contactId, int userId, String contactName, boolean isFavourite, boolean isActive,
+			String profilePicture, Timestamp createdAt, Timestamp modifiedAt, List<Address> theAddresses,
+			List<Phone> thePhones, List<Email> theEmails) {
 		super();
+		this.contactId = contactId;
 		this.userId = userId;
 		this.contactName = contactName;
 		this.isFavourite = isFavourite;
@@ -52,7 +76,14 @@ public class Contact {
 		this.profilePicture = profilePicture;
 		this.createdAt = createdAt;
 		this.modifiedAt = modifiedAt;
+		this.theAddresses = theAddresses;
+		this.thePhones = thePhones;
+		this.theEmails = theEmails;
 	}
+
+
+
+
 	public int getContactId() {
 		return contactId;
 	}
@@ -101,6 +132,30 @@ public class Contact {
 	public void setModifiedAt(Timestamp modifiedAt) {
 		this.modifiedAt = modifiedAt;
 	}
+	public List<Address> getTheAddresses() {
+		return theAddresses;
+	}
+
+	public void setTheAddresses(List<Address> theAddresses) {
+		this.theAddresses = theAddresses;
+	}
+
+	public List<Phone> getThePhones() {
+		return thePhones;
+	}
+
+	public void setThePhones(List<Phone> thePhones) {
+		this.thePhones = thePhones;
+	}
+
+	public List<Email> getTheEmails() {
+		return theEmails;
+	}
+
+	public void setTheEmails(List<Email> theEmails) {
+		this.theEmails = theEmails;
+	}
+
 	@Override
 	public String toString() {
 		return "Contact [contactId=" + contactId + ", userId=" + userId + ", contactName=" + contactName

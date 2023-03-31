@@ -5,10 +5,12 @@ import com.bhavika.cd.contactDirectory.entity.User;
 
 public interface UserService {
 		
+	public List<User> findAll();
+	
 	public User findById(int theUserId);
 	
-	public void save(User theUser);
-	
+	public void addUser(User theUser);
+		
 	public void deleteById(int theUserId);
 
 }

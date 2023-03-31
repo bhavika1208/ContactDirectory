@@ -1,36 +1,31 @@
 package com.bhavika.cd.contactDirectory.serviceImpl;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.hibernate.context.spi.CurrentSessionContext;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bhavika.cd.contactDirectory.entity.City;
-import com.bhavika.cd.contactDirectory.entity.State;
 import com.bhavika.cd.contactDirectory.repository.CityRepository;
 import com.bhavika.cd.contactDirectory.service.CityService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Query;
-import jakarta.transaction.Transactional;
-import jakarta.websocket.Session;
-
 
 @Service
 public class CityServiceImpl implements CityService {
-	
+
 	private CityRepository cityRepository;
-	private final EntityManagerFactory emf;
-	
+
 	@Autowired
-	public CityServiceImpl(CityRepository thecityRepository, EntityManagerFactory emf) {
-		this.emf = emf;
+	public CityServiceImpl(CityRepository thecityRepository) {
 		cityRepository = thecityRepository;
 	}
-	
+
 	@Override
 	public List<City> getCities() {
 		return cityRepository.findAll();
@@ -38,27 +33,13 @@ public class CityServiceImpl implements CityService {
 
 	@Override
 	public List<City> getCitiesbyState(int stateId) {
-		
-//		Session currentSession = entityManager.unwrap(Session.class);
-//		
-//		Query theQuery = currentSession.createQuery("from city where stateId=:citystateId", City.class);
-////		Query theQuery = entityManager.createQuery("from city where stateId=:citystateId");
-//		
-//		theQuery.setParameter("citystateId", stateId);
-//		
-//		return theQuery.getResultList();
-		
-		EntityManager entityManager = emf.createEntityManager();
-		String hql = "FROM City C WHERE C.citystateId =: citystateId";
-        Query query = entityManager.createQuery(hql);
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(City.class)
+				.buildSessionFactory();
 
-//        Query query = entityManager.createQuery("from city where citystateId=:citystateId");
-        query.setParameter("citystateId", stateId);
-        return query.getResultList();
-		
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		List<City> theCities = session.createQuery("from City WHERE cityStateId='" + stateId + "'").getResultList();
+		return theCities;
 	}
-	
-	
-
 
 }

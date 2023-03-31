@@ -1,6 +1,8 @@
 package com.bhavika.cd.contactDirectory.entity;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,13 +41,13 @@ public class Address {
 	@Column(name="isActive")
 	private boolean isActive;
 
+	@CreationTimestamp
 	@Column(name="createdAt")
 	private Timestamp createdAt;
 
+	@CreationTimestamp
 	@Column(name="modifiedAt")
 	private Timestamp modifiedAt;
-    
-    
     
     
 	public Address() {

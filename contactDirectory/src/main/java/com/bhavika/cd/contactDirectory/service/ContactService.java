@@ -5,12 +5,12 @@ import com.bhavika.cd.contactDirectory.entity.Contact;
 
 public interface ContactService {
 	
-	public List<Contact> findAll(int theUserId);
+	public List<Contact> getAllContacts(int theUserId);
 	
 	public Contact findById(int theContactId);
 	
-	public void save(Contact theContact);
+	public void addContact(Contact theContact);
 	
-	public void deleteById(int theContactId);
+	public void deleteContactById(int theContactId);
 
 }

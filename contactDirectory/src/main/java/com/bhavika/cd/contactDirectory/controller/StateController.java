@@ -2,6 +2,7 @@ package com.bhavika.cd.contactDirectory.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,11 +12,12 @@ import com.bhavika.cd.contactDirectory.entity.State;
 import com.bhavika.cd.contactDirectory.service.StateService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/cd")
 public class StateController {
 	
 	private StateService stateService;
 	
+	@Autowired
 	private StateController(StateService theStateService) {
 		stateService = theStateService;
 	}
